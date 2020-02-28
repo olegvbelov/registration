@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+</head>
+<body>
+<div id="container">
+    <div class="shell">
+        <br />
+        <!-- Main -->
+        <div id="main">
+            <div class="cl">&nbsp;</div>
+
+            <!-- Content -->
+            <div id="content">
+
+                <!-- Box -->
+                <div class="box">
+                    <!-- Box Head -->
+                    <div class="box-head">
+                        <h2 class="center">Добавить возрастные группы</h2>
+                    </div>
+                    <!-- End Box Head -->
+                    <div class="center nameD">
+                        <form th:action="@{/admin/saveDistance}" method = "GET" th:object="${distance}">
+                            <p>Дистанция: <span th:text="${distance.distanceName}"></span>
+                                <button type="submit" class="funcbtn">Добавить дистанцию</button>
+                            </p>
+                        </form>
+                    </div>
+                    <h2 class="center center-str">Список возрастных групп</h2>
+                    <ul class="str">
+                        <li th:each="ageGroup : ${distance.ageGroups}">
+                            <p><span th:text="${ageGroup.nameGroup}"></span></p>
+                        </li>
+                    </ul>
+                    <form th:action="@{/admin/addAgeGroup}" method="POST" th:object="${ageGroupForm}" >
+                        <h2 class="center center-str">Новая возрастная группа</h2>
+                        <div class="form-check-inline center">
+
+                            <input class="form-check-input" type="radio" th:field="*{ageType}" th:value="year" checked>
+                            <label class="form-check-label" th:for="${#ids.prev('ageType')}">По годам</label>
+                            <input class="form-check-input" type="radio" th:field="*{ageType}" th:value="age">
+                            <label class="form-check-label" th:for="${#ids.prev('ageType')}">По возрастам</label>
+                        </div>
+                        <div class="form-pair">
+                            <input type="text" id="groupBegin" th:field="*{groupBegin}"> -
+                            <input type="text" id="groupEnd" th:field="*{groupEnd}">
+                        </div>
+                        <button type="submit" class="funcbtn">Добавить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

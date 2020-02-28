@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div id="header">
+        <div class="shell">
+            <!-- Logo + Top Nav -->
+            <div id="top">
+                <h1>Регистрация на соревнования</h1>
+            </div>
+            <!-- End Logo + Top Nav -->
+
+            <!-- Main Nav -->
+            <div id="navigation">
+                <ul>
+                    <li><a th:href="@{/user/index}"><span>Соревнования</span></a></li>
+                    <li><a th:href="@{/user/results}"><span>Результаты</span></a></li>
+                    <li><a th:href="@{/logout}"><span>Выход</span></a></li>
+                    <li><a th:href="@{/user/info}"  class="active"><span>Личные данные</span></a></li>
+                </ul>
+            </div>
+            <!-- End Main Nav -->
+        </div>
+    </div>
+    <!-- End Header -->
+    <!-- Container -->
+    <div id="container">
+        <div class="shell">
+            <br />
+            <!-- Main -->
+            <div id="main">
+                <div class="cl">&nbsp;</div>
+
+                <!-- Content -->
+                <div id="content">
+
+                    <!-- Box -->
+                    <div class="box">
+                        <!-- Box Head -->
+                        <div class="box-head">
+                            <h2 class="left">Личная информация</h2>
+                        </div>
+                        <!-- End Box Head -->
+                        <form th:action="@{/user/setInfo}" method="GET">
+                            <div class="str">
+                                <p>Email: <span th:text="${user.email}"></span></p>
+                            </div>
+                            <div class="str">
+                                <p>Фамилия, имя, отчество: <span th:text="${user.name}"></span></p>
+                            </div>
+                            <div class="str">
+                                <p>Страна: <span th:text="${user.country}"></span></p>
+                            </div>
+                            <div class="str">
+                                <p>Город: <span th:text="${user.city}"></span></p>
+                            </div>
+                            <div class="str">
+                                <p>Пол: <span th:text="${user.gender}"></span></p>
+                            </div>
+                            <div class="str">
+                                <p>Дата рождения: <span th:text="${user.dateBith}"></span></p>
+                            </div>
+                            <div class="str">
+                                <p>Клуб: <span th:text="${user.club}"></span></p>
+                            </div>
+                            <div class="str">
+                                <p>Разряд: <span th:text="${user.category}"></span></p>
+                            </div>
+                            <div class="registerbtn-group">
+                                <button type="submit" class="registerbtn" name = "action" value="changeInfo">Редактировать информацию</button>
+                                <button type="submit" class="registerbtn" name = "action" value="changePassword">Сменить пароль</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

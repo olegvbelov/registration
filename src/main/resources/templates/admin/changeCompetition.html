@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавить соревнование</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker-standalone.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.min.css}">
+
+
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+    <div class="shell">
+        <!-- Logo + Top Nav -->
+        <div id="top">
+            <h1>Администратор</h1>
+        </div>
+        <!-- End Logo + Top Nav -->
+
+        <!-- Main Nav -->
+        <div id="navigation">
+            <ul>
+                <li><a th:href="@{/admin/index}"><span>Соревнования</span></a></li>
+                <li><a th:href="@{/admin/createCompetition}"  class="active"><span>Добавить соревнование</span></a></li>
+                <li><a th:href="@{/admin/archive}"><span>Архив</span></a></li>
+                <li><a th:href="@{/logout}"><span>Выход</span></a></li>
+            </ul>
+        </div>
+        <!-- End Main Nav -->
+    </div>
+</div>
+<!-- End Header -->
+<!-- Container -->
+<div id="container">
+    <!-- Box -->
+    <div class="box">
+        <!-- Box Head -->
+        <div class="box-head">
+            <h2 class="left">Создание соревнования</h2>
+        </div>
+        <!-- End Box Head -->
+        <form th:action="@{/admin/saveChange}" method="POST" th:object="${eventForm}" enctype="multipart/form-data">
+            <div class="form-group row">
+                <label th:for="nameCompetition"><b>Название</b></label>
+                <input type="text" placeholder="" required="" id="nameCompetition" th:field="*{nameCompetition}"/>
+            </div>
+            <div class="form-group row labelarea">
+                <label class="labelarea" th:for="nameCompetition"><b>Описание</b></label>
+                <textarea rows="10" cols="45" th:field="*{info}" id="info"></textarea>
+            </div>
+            <div class="form-group row">
+                <label th:for="location"><b>Место проведения</b></label>
+                <input type="text" placeholder="" required="" id="location" th:field="*{location}"/>
+            </div>
+            <div class="form-group row">
+                <label th:for="dateCompetition"><b>Дата проведения</b></label>
+                <input type="text" placeholder="" required="" id="dateCompetition" th:field="*{dateCompetition}"/>
+            </div>
+            <div class="form-group row">
+                <label th:for="position"><b>Положение</b></label>
+                <input type="file" name="file" placeholder="" required="" id="position"/>
+            </div>
+
+            <button type="submit" class="funcbtn">Создать</button>
+        </form>
+    </div>
+</div>
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/moment-with-locales.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#dateCompetition').datetimepicker({
+            locale: 'ru'
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+<div class="container">
+    <!-- Header -->
+    <div id="header">
+        <div class="shell">
+            <!-- Logo + Top Nav -->
+            <div id="top">
+                <h1>Регистрация на соревнования</h1>
+            </div>
+            <!-- End Logo + Top Nav -->
+
+            <!-- Main Nav -->
+            <div id="navigation">
+                <ul>
+                    <li><a th:href="@{/user/index}" class="active"><span>Соревнования</span></a></li>
+                    <li><a th:href="@{/user/results}"><span>Результаты</span></a></li>
+                    <li><a th:href="@{/logout}"><span>Выход</span></a></li>
+                    <li><a th:href="@{/user/info}"><span>Личные данные</span></a></li>
+                </ul>
+            </div>
+            <!-- End Main Nav -->
+        </div>
+    </div>
+    <!-- End Header -->
+    <!-- Container -->
+    <div id="container">
+        <div class="shell">
+            <br />
+            <!-- Main -->
+            <div id="main">
+                <div class="cl">&nbsp;</div>
+
+                <!-- Content -->
+                <div id="content">
+
+                    <!-- Box -->
+                    <div class="box">
+                        <!-- Box Head -->
+                        <div class="box-head">
+                            <h2 class="left">Изменить личные данные</h2>
+                        </div>
+                        <!-- End Box Head -->
+                        <form th:action="@{/user/setInfo}" method="POST" th:object="${participantForm}">
+                            <div class="form-group">
+                                <input type="text" placeholder="Фамилия, имя, отчество" required="" id="name" th:field="*{name}" />
+                            </div>
+                            <div class="form-check-inline">
+                                <h3>Пол</h3>
+                                <input  class="form-check-input" type="radio" th:field="*{gender}" th:value="male" checked="true">
+                                <label class="form-check-label" th:for="${#ids.prev('gender')}">Мужской</label>
+                                <input class="form-check-input" type="radio" th:field="*{gender}" th:value="female">
+                                <label class="form-check-label" th:for="${#ids.prev('gender')}">Женский</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Страна" required="" id="country" th:field="*{country}"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Город" required="" id="city" th:field="*{city}"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" placeholder="Дата рождения" required="" id="dateBith" th:field="*{dateBith}" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Разряд, звание" required="" id="category" th:field="*{category}"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Клуб" required="" id="club" th:field="*{club}"/>
+                            </div>
+                            <button type="submit" class="funcbtn">Сохранить изменения</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Регистрация на соревнования</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+    <div class="shell">
+        <!-- Logo + Top Nav -->
+        <div id="top">
+            <h1>Администратор</h1>
+        </div>
+        <!-- End Logo + Top Nav -->
+
+        <!-- Main Nav -->
+        <div id="navigation">
+            <ul>
+                <li><a th:href="@{/admin/index}"><span>Соревнования</span></a></li>
+                <li><a th:href="@{/admin/createCompetition}"><span>Добавить соревнование</span></a></li>
+                <li><a th:href="@{/admin/archive}" class="active"><span>Архив</span></a></li>
+                <li><a th:href="@{/logout}"><span>Выход</span></a></li>
+            </ul>
+        </div>
+        <!-- End Main Nav -->
+    </div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+    <div class="shell">
+        <br />
+        <!-- Main -->
+        <div id="main">
+            <div class="cl">&nbsp;</div>
+
+            <!-- Content -->
+            <div id="content">
+
+                <!-- Box -->
+                <div class="box">
+                    <!-- Box Head -->
+                    <div class="box-head">
+                        <h2 class="left">Список соревнований</h2>
+                        <div class="right">
+                            <label>Найти соревнование</label>
+                            <input type="text" class="field small-field" />
+                            <input type="submit" class="button" value="search" />
+                        </div>
+                    </div>
+                    <!-- End Box Head -->
+
+                    <!-- Table -->
+                    <div class="table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th colspan="1">Название</th>
+                                <th>Описание</th>
+                                <th>Расположение</th>
+                                <th>Дата проведения</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr  th:each="event : ${events}">
+                                <td><a th:href="@{/admin/eventArchive/{id}(id=${event.id})}"><span th:text="${event.nameCompetition}"> Название </span></a></td>
+                                <td><textarea th:text = "${event.info}" readonly = true disabled = true> </textarea> </td>
+                                <td><span th:text="${event.location}"> Расположение </span></td>
+                                <td><span th:text="${event.dateCompetition}"> Дата проведения </span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                        <!-- Pagging -->
+                        <div class="pagging">
+
+                        </div>
+                        <!-- End Pagging -->
+
+                    </div>
+                    <!-- Table -->
+
+                </div>
+                <!-- End Box -->
+            </div>
+            <!-- End Content -->
+
+            <div class="cl">&nbsp;</div>
+        </div>
+        <!-- Main -->
+    </div>
+</div>
+<!-- End Container -->
+
+
+</body>
+</html>

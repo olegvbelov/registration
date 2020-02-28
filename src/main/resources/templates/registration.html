@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+	<meta charset="utf-8">
+	<link th:href="@{/css/registrationStyle.css}" rel="stylesheet" type="text/css" />
+
+      <link th:href="@{/css/registrationStyle.css}" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container">
+	<section id="content">
+		<form th:action="@{/registration}" method="POST" th:object="${userForm}">
+			<h1>Регистрация</h1>
+			<div>
+				<input type="email" placeholder="Email" required="" id="email" th:field="*{email}"/>
+			</div>
+			<div>
+				<input type="password" placeholder="Пароль" required="" id="password" th:field="*{password}" />
+			</div>
+			<div>
+				<input type="text" placeholder="Фамилия, имя, отчество" required="" id="name" th:field="*{name}" />
+			</div>
+			<h2>Пол</h2>
+			<div>
+				<input type="radio" th:field="*{gender}" th:value="male" checked="true">
+				<label th:for="${#ids.prev('gender')}">Мужской</label>
+				<input type="radio" th:field="*{gender}" th:value="female">
+				<label th:for="${#ids.prev('gender')}">Женский</label>
+			</div>
+			<div>
+				<input type="text" placeholder="Страна" required="" id="country" th:field="*{country}"/>
+			</div>
+			<div>
+				<input type="text" placeholder="Город" required="" id="city" th:field="*{city}"/>
+			</div>
+			<div>
+				<input type="date" placeholder="Дата рождения" required="" id="dateBith" th:field="*{dateBith}" />
+
+			</div>
+			<div>
+				<input type="text" placeholder="Разряд, звание" id="category" th:field="*{category}"/>
+			</div>
+			<div>
+				<input type="text" placeholder="Клуб" id="club" th:field="*{club}"/>
+			</div>
+			<div class="reg-btn">
+				<input type="submit" value="Регистрация" th:href="@{/registration}"/>
+			</div>
+		</form><!-- form -->
+
+	</section><!-- content -->
+</div><!-- container -->
+</body>
+</html>
+

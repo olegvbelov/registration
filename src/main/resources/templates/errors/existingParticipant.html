@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Повторная регистрация</title>
+</head>
+<body>
+<h1>Вы уже зарегистрированы на данное соревнование</h1>
+<a th:href="@{/user/index}" th:if="${authenticated}">Выбрать другое соревнование</a>
+<a th:href="@{/mainPage}" th:unless="${authenticated}">Выбрать другое соревнование</a>
+</body>
+</html>

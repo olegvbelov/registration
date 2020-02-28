@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+</head>
+<body>
+<div id="container">
+    <div class="shell">
+        <br />
+        <!-- Main -->
+        <div id="main">
+            <div class="cl">&nbsp;</div>
+
+            <!-- Content -->
+            <div id="content">
+
+                <!-- Box -->
+                <div class="box">
+                    <!-- Box Head -->
+                    <div class="box-head">
+                        <h2 class="left">Добавить дистанции</h2>
+                    </div>
+                    <!-- End Box Head -->
+                    <form th:action="@{/admin/addDistance/{id}(id=${event.id})}" method = "GET">
+                        <h2 class="str">Соревнование</h2>
+                        <div class="str">
+                            <p>Название: <span th:text="${event.nameCompetition}"></span></p>
+                        </div>
+                        <div class="str">
+                            <p>Место проведения: <span th:text="${event.location}"></span></p>
+                        </div >
+                        <div class="str">
+                            <p>Дата проведения: <span th:text="${event.dateCompetition}"></span></p>
+                        </div>
+                        <div class="str">
+                            <p><a th:href="@{/load/{fileName}(fileName = ${event.position})}"> Положение</a></p>
+                        </div>
+                        <div class="registerbtn-group">
+                            <button type="submit" class="registerbtn" name = "action" value="change">Изменить</button>
+                            <button type="submit" class="registerbtn" name = "action" value="cancel">Отмена</button>
+                        </div>
+                    </form>
+                        <h2 class="str">Список дистанций</h2>
+                        <ul class="str">
+                            <li th:each="distance : ${event.distances}">
+                                <p><span th:text="${distance.distanceName}"></span></p>
+                                <a th:href="@{/admin/deleteDistance/{id}(id=${distance.id})}">Удалить</a>
+                            </li>
+                        </ul>
+
+                        <form th:action="@{/admin/addDistance}" method="POST" th:object="${distanceForm}" >
+                            <div class="str">
+                                <label for="distanceName" >Новая дистанция</label>
+                                <input type = "text" id="distanceName" th:field="*{distanceName}">
+                            </div>
+                            <button id = "addDistance" type="submit" class="funcbtn">Добавить возрастные группы</button>
+                        </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script>
+    function unlockButton() {
+        var dist = $('#distanceName').val;
+        if(dist.length !== 0) {
+            $('addDistance').removeAttr('disabled');
+        }
+        else {
+            $('addDistance').attr('disabled', 'disabled');
+        }
+    }
+</script>
+</html>
